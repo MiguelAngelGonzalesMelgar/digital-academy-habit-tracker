@@ -74,3 +74,6 @@ Make sure you have the following installed:
 ## 📚 Digital Academy – Frontend Development Module
 
 This project is a practical exercise developed for the Frontend Development module at Digital Academy, showcasing skills in building interactive web apps with modern front-end technologies.
+
+### Comments
+For testing Actions.
