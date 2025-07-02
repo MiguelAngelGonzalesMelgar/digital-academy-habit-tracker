@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-    IMAGE_NAME: miguelgonzalesmelgar/habit-tracker
+      IMAGE_NAME: miguelgonzalesmelgar/habit-tracker
 
     steps:
       - name: Checkout code
@@ -34,25 +34,25 @@ jobs:
       - name: Build project
         run: npm run build
 
-# --- Docker login and build/push 
+      # --- Docker login and build/push ---
 
--name: Log in to Docker hub
-  uses: docker/login-action@v3
-  with:
-    username: ${{ secrets.DOCKERHUB_USERNAME }}
-    password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Log in to Docker hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
--name: Extract version from package.json
-  id: version
-  run: |
-    VERSION=$(node -p "require('./package.json').version")
-    echo "version=${VERSION}" >> $GITHUB-OUTPUT
+      - name: Extract version from package.json
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
--name: Build Docker image
-  run: |
-    docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:{{ steps.version.outputs.version }} .
-  
--name: Push Docker images
-  run: |
-    docker push $IMAGE_NAME:latest
-    docker push $IMAGE_NAME:${{ steps.version.outputs.version }}
+      - name: Build Docker image
+        run: |
+          docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:${{ steps.version.outputs.version }} .
+
+      - name: Push Docker images
+        run: |
+          docker push $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:${{ steps.version.outputs.version }}
