@@ -36,23 +36,23 @@ jobs:
 
 # --- Docker login and build/push 
 
-- name: Log in to Docker hub
+-name: Log in to Docker hub
   uses: docker/login-action@v3
   with:
     username: ${{ secrets.DOCKERHUB_USERNAME }}
     password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-- name: Extract version from package.json
+-name: Extract version from package.json
   id: version
   run: |
     VERSION=$(node -p "require('./package.json').version")
     echo "version=${VERSION}" >> $GITHUB-OUTPUT
 
-- name: Build Docker image
+-name: Build Docker image
   run: |
     docker build -t $IMAGE_NAME:latest -t $IMAGE_NAME:{{ steps.version.outputs.version }} .
   
-- name: Push Docker images
+-name: Push Docker images
   run: |
     docker push $IMAGE_NAME:latest
     docker push $IMAGE_NAME:${{ steps.version.outputs.version }}
