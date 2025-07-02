@@ -6,7 +6,7 @@ import {
   IconButton,
   Text,
   useColorMode, // Este hook te da el modo de color actual y la función para cambiarlo
-  type IconButtonProps,
+  type TextProps,
 } from "@chakra-ui/react";
 import * as React from "react";
 import { LuMoon, LuSun } from "react-icons/lu";
@@ -61,11 +61,9 @@ export function ColorModeIcon() {
   return colorMode === "dark" ? <LuMoon /> : <LuSun />;
 }
 
-interface ColorModeButtonProps extends Omit<IconButtonProps, "aria-label"> {}
 
 export const ColorModeButton = React.forwardRef<
-  HTMLButtonElement,
-  ColorModeButtonProps
+  HTMLButtonElement
 >(function ColorModeButton(props, ref) {
   const { toggleColorMode } = useColorMode(); // Usa el de Chakra
   return (
@@ -94,7 +92,7 @@ export const ColorModeButton = React.forwardRef<
 // Si no necesitas "clasificar" secciones de la UI con estos modos específicos,
 // y solo quieres que la UI reaccione al modo global, podrías eliminarlos.
 // Si los necesitas, su implementación actual no parece depender de ClientOnly.
-export const LightMode = React.forwardRef<HTMLSpanElement, any>( // Puedes poner SpanProps si necesitas tipar props
+export const LightMode = React.forwardRef<HTMLSpanElement, TextProps>( // Puedes poner SpanProps si necesitas tipar props
   function LightMode(props, ref) {
     return (
       <Text as="span"
@@ -110,7 +108,7 @@ export const LightMode = React.forwardRef<HTMLSpanElement, any>( // Puedes poner
   },
 );
 
-export const DarkMode = React.forwardRef<HTMLSpanElement, any>( // Puedes poner SpanProps si necesitas tipar props
+export const DarkMode = React.forwardRef<HTMLSpanElement, TextProps>( // Puedes poner SpanProps si necesitas tipar props
   function DarkMode(props, ref) {
     return (
       <Text as="span"

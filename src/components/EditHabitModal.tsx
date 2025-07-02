@@ -14,7 +14,7 @@ import { Modal,
   from "@chakra-ui/react";
 import { useState } from "react";
 
-import { AVAILABLE_COLORS } from "./AppForm";
+import { AVAILABLE_COLORS } from "../constants/availableColors";
 
 
 interface EditHabitModalProps {

@@ -9,15 +9,7 @@ import AppInput from "./AppInput";
 import ColorPicker from "./ColorPicker";
 import AppButton from "./AppButton";
 import { useState } from "react";
-
-// Colors
-export const AVAILABLE_COLORS = [
-	"#FF746C50",
-	"#8FBC8B80",
-	"#F68BA250",
-	"#E2CF8850",
-	"#D8B0C850",
-];
+import { AVAILABLE_COLORS } from "@/constants/availableColors";
 
 // Habits structure
 export interface Habit {

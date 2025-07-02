@@ -8,7 +8,7 @@ interface ProgressTrackingProps {
   habitId: string;
 }
 
-const ProgressTracking = ({progress, onProgressChange}: ProgressTrackingProps) => {
+const ProgressTracking = ({progress, onProgressChange, habitId}: ProgressTrackingProps) => {
 
   const daysOfWeek = ["M", "T", "W", "T", "F", "S", "S"];
   // TODO: transform days into obj
@@ -28,7 +28,7 @@ const ProgressTracking = ({progress, onProgressChange}: ProgressTrackingProps) =
   // Efect to handle progress
   useEffect(() => {
       setCompletedDays(progress || defaultProgress);
-  }, [progress])
+  }, [progress, defaultProgress])
 
   // handler
   const handleOnChangeCheckbox = (index: number) => {
@@ -64,6 +64,8 @@ const ProgressTracking = ({progress, onProgressChange}: ProgressTrackingProps) =
             colorScheme="green"
             size={{base:"sm", md: "md"}}
             mb="3"
+            id={`progress-${habitId}-${index}`}
+            name={`progress-${habitId}-day-${index}`}
           >{day}
           </Checkbox>
         ))}
