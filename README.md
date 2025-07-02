@@ -75,5 +75,13 @@ Make sure you have the following installed:
 
 This project is a practical exercise developed for the Frontend Development module at Digital Academy, showcasing skills in building interactive web apps with modern front-end technologies.
 
-### Comments
-For testing Actions.
+## Docker
+
+```sh
+# Build the Docker image
+docker build -t habit-tracker .
+
+# Run the container
+docker run -p 8080:80 habit-tracker
+
+```
